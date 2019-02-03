@@ -72,8 +72,6 @@ app.post("/uploadImage",auth,uploadImageController)
 app.get("/deleteImage/:id",auth,deleteImageController)
 app.get("/allComments",allCommentsController)
 
-
-
-app.listen(4000, () => {
-  console.log("App listening on port 4000");
+app.listen(process.env.PORT || 4000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
