@@ -28,7 +28,7 @@ const allCommentsController = require("./controllers/allComments")
 
 
 const app = new express();
-mongoose.connect("mongodb://woxen:abhishek@955@ds221115.mlab.com:21115/woxen");
+mongoose.connect("mongodb://admin:admin123@ds221115.mlab.com:21115/woxen");
 
 app.use(connectFlash());
 
