@@ -25,10 +25,6 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
     <!-- ======= css ======= -->
     <link rel="stylesheet" href="style.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"> </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 </head>
 
 <body data-spy="scroll" data-target=".navbar">
@@ -44,7 +40,7 @@
                 <div class="col-xs-5 col-sm-2 col-md-2">
                     <!-- Header logo -->
                     <div class="logo">
-                        <a href="/dashbord">
+                        <a href="/">
                             <img src="images/logo.png" alt="">
                         </a>
                     </div>
@@ -53,12 +49,8 @@
                     <!-- Header menu -->
                     <nav class="navbar menu-part">
                         <ul class="nav nav-tabs" id="menu">
-                            <li class="active"><a class="smooth-scroll" href="/dashbord">home</a></li>
-                            <li><a class="smooth-scroll" href="/profile"><span class="separet"></span> {{users.username}}</a></li>
-                            <li><a class="smooth-scroll" href="#comments"><span class="separet"></span>Verify comments</a></li>
-                            <li><a class="smooth-scroll" href="#imgs"><span class="separet"></span>Manage images</a></li>
-                            <li><a class="smooth-scroll" href="/imageU"><span class="separet"></span> Upload images</a></li>
-                            <li><a class="smooth-scroll" href="/auth/logout"><span class="separet"></span> Logout</a></li>
+                            <li class="active"><a class="smooth-scroll" href="/">home</a></li>
+                            <li><a class="smooth-scroll" href="#profile"><span class="separet"></span>User Profile</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -96,7 +88,6 @@
                         <div class="gym-single-slider">
                             <h1 class="animated fadeInDown">what's your <span>mind</span> belives</h1>
                             <h2 class="animated slideInRight">yes you can <span>do</span> it<span>.</span></h2>
-
                         </div>
                     </div>
                 </div>
@@ -109,7 +100,6 @@
                         <div class="gym-single-slider">
                             <h1 class="animated fadeInDown">MAKE <span>IT </span>HAPPEN!</h1>
                             <h2 class="animated slideInRight">WINING IS <span>EASIER THAN</span> YOU THINK!</h2>
-
                         </div>
                     </div>
                 </div>
@@ -119,95 +109,40 @@
     </section>
     <!-- ======= Slider part end ======= -->
 
-    <!-- ======= comments part start ======= -->
-    <section id="comments" class="schedule-area section-padding">
+    <!-- ======= Register User part start ======= -->
+    <section id="profile" class="contact-part-area section-padding">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="title">
-                        <h1>Customer <span>Comments</span></h1>
+                    <div class="title contact-title ">
+                        <h1>User <span>Profile</span></h1>
                     </div>
                 </div>
             </div>
+            <h1 style="color:white;"><b>Username: {{users.username}}</b></h1><br>
+            <h1 style="color:white;"><b>Email: {{users.email}}</b></h1><br><br>
+            <div class="title contact-title ">
+                <h1>Change<span> password</span></h1>
+            </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="schedule">
-                        <div class="schedule-dec">
-                            <div class="schedule-title">
-                                <span>WOXEN</span><span>Comments</span>
+                    <div class="contact-form">
+                        <form action="/update" method="POST" encType="multipart/form-data" name="form">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-content">
+                                        <input name="password" placeholder="NEW PASSWORD" type="password" required>
+                                    </div>
+                                </div><br><br><br><br>
+                                <button type="submit" name="submit" class="sent-button hvr-shutter-out-vertical wow fadeIn">UPDATE</button>
                             </div>
-                            <div class="schedule-timing">
-                                <table id="example" class="table table-transparent" cellspacing="0" width="100%">
-                                    <thead>
-
-                                        <th>Comment</th>
-                                        <th>Photo</th>
-                                        <th>Options</th>
-
-                                    </thead>
-                                    @each(userComment in custcmnts)
-                                    <tr>
-                                        <td>{{userComment.msg}} <br><br><em>-Commented by</em> {{userComment.name}} <br><em>On</em> {{userComment.createdAt.toDateString()}}</td>
-                                        <td name="img"><img src="{{userComment.image}}" alt="img" width='100' height='100'></td>
-                                        <td><a href="/acceptComment/{{userComment._id}}" style="width:60px;padding:2px 1px 2px 1px;"
-                                                onclick="posted()">Accept</a>
-                                            &nbsp; <a href="/deleteComment/{{userComment._id}}" style="width:60px;padding:2px 1px 2px 1px;">Delete</a>
-                                            &nbsp; <p>{{userComment.status || 'New'}}</p>
-                                        </td>
-
-                                    </tr>
-                                    @endeach
-                                </table>
-                            </div>
-                        </div>
-                        <!--  single schedule  -->
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- ======= comments part end ======= -->
-    <!-- ======= images part start ======= -->
-    <section id="imgs" class="schedule-area section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="title">
-                        <h1>Uploaded <span>Images</span></h1>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="schedule">
-                        <div class="schedule-dec">
-                            <div class="schedule-title">
-                                <span></span><span>Images</span>
-                            </div>
-                            <div class="schedule-timing">
-                                <table id="example" class="table table-transparent" cellspacing="0" width="100%">
-                                    <thead>
-                                        <th>Images</th>
-                                        <th>Options</th>
-
-                                    </thead>
-                                    @each(userImg in userImages)
-                                    <tr>
-                                        <td name="img"><img src="{{userImg.image}}" alt="img" width='100' height='100'></td>
-                                        <td><a class="btn" href="/deleteImage/{{userImg._id}}">Delete</a></td>
-                                    </tr>
-                                    @endeach
-                                </table>
-                            </div>
-                        </div>
-                        <!--  single schedule  -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ======= comments part end ======= -->
-
+    <!-- ======= Contact part end ======= -->
     <!-- ======= Footer part start ======= -->
     <footer class="fotter-bottom-area">
         <div class="container">
@@ -221,32 +156,10 @@
             </div>
         </div>
     </footer>
-    <script>
-        $(document).ready(function () {
-            //Only needed for the filename of export files.
-            //Normally set in the title tag of your page.
-            // DataTable initialisation
-            $('#example').DataTable(
-                {
-                    "dom": '<"dt-buttons"Bf><"clear">lirtp',
-                    "paging": true,
-                    "autoWidth": true,
-                    "buttons": [
-                        'colvis',
-                        'copyHtml5',
-                        'csvHtml5',
-                        'excelHtml5',
-                        'pdfHtml5',
-                        'print'
-                    ]
-                }
-            );
-        });
-    </script>
     <!-- ======= Footer part end ======= -->
     <!-- ======= All js ======= -->
     <!-- ====== Jquery Min ======= -->
-    <!-- <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script> -->
+    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
     <!-- ====== Bootstrap js ======= -->
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <!-- ====== slicknav js ======= -->
@@ -297,7 +210,6 @@
         });
 
     </script>
-
 </body>
 
 

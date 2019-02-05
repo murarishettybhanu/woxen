@@ -24,6 +24,8 @@ const imageController = require("./controllers/image");
 const uploadImageController = require("./controllers/uploadImage")
 const deleteImageController = require("./controllers/deleteImage")
 const allCommentsController = require("./controllers/allComments")
+const profileController = require("./controllers/profile")
+const updateController = require("./controllers/update")
 
 
 
@@ -71,6 +73,8 @@ app.get("/imageU",auth,imageController);
 app.post("/uploadImage",auth,uploadImageController)
 app.get("/deleteImage/:id",auth,deleteImageController)
 app.get("/allComments",allCommentsController)
+app.get("/profile",auth,profileController)
+app.post("/update",auth,updateController)
 
 app.listen(process.env.PORT || 4000, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
