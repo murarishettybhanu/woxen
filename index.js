@@ -60,7 +60,7 @@ app.get("/posts/new", auth, createPostController);
 app.post("/posts/store", auth, storePost, storePostController);
 app.get("/login", loginController);
 app.post("/users/login", loginUserController);
-app.get("/register", createUserController);
+app.get("/registerWoxenUser", createUserController);
 app.post("/users/register", storeUserController);
 app.get("/dashbord",auth, userdashbordController);
 app.get("/auth/logout", auth, logoutController);
