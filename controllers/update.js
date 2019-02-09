@@ -22,7 +22,9 @@ module.exports = (req , res ) => {
                 res.render('/profile')
             }
             else{
-                res.redirect('/dashbord')
+                req.session.destroy(() => {
+                    res.redirect('/login')
+                  })
 
             }
                         
