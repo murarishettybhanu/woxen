@@ -737,7 +737,7 @@ video.video-bg {
 /***** ----- About gym part start ----- *****/
 
 .about-gym-area {
-    background: #f1f1f1 url("../images/about-gym-bg.png") no-repeat fixed left center / contain;
+    background: #f1f1f1 url("../images/about-gym-bgs.jpg") no-repeat fixed left center / contain;
     position: relative;
 }
 
