@@ -27,8 +27,7 @@ const updateController = require("./controllers/update")
 
 
 const app = new express();
-mongoose.connect("mongodb://admin:admin123@ds221115.mlab.com:21115/woxen");
-
+mongoose.connect('mongodb://localhost/woxenDataBase', { useNewUrlParser: true });
 app.use(connectFlash());
 
 const mongoStore = connectMongo(expressSession);
@@ -69,6 +68,6 @@ app.get("/allComments",allCommentsController)
 app.get("/profile",auth,profileController)
 app.post("/update",auth,updateController)
 
-app.listen(process.env.PORT || 4000, function(){
+app.listen(process.env.PORT || 80, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
