@@ -23,6 +23,8 @@ const deleteImageController = require("./controllers/deleteImage")
 const allCommentsController = require("./controllers/allComments")
 const profileController = require("./controllers/profile")
 const updateController = require("./controllers/update")
+const createyvideoController = require("./controllers/createVideo")
+const youtubeVideoController = require("./controllers/youvideo")
 
 
 
@@ -67,6 +69,8 @@ app.get("/deleteImage/:id",auth,deleteImageController)
 app.get("/allComments",allCommentsController)
 app.get("/profile",auth,profileController)
 app.post("/update",auth,updateController)
+app.post("/youvideo",auth,youtubeVideoController)
+app.post("/cyouvideo",auth,createyvideoController)
 
 app.listen(process.env.PORT || 80, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);

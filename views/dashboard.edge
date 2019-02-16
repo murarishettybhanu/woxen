@@ -58,6 +58,7 @@
                             <li><a class="smooth-scroll" href="#comments"><span class="separet"></span>Verify comments</a></li>
                             <li><a class="smooth-scroll" href="#imgs"><span class="separet"></span>Manage images</a></li>
                             <li><a class="smooth-scroll" href="/imageU"><span class="separet"></span> Upload images</a></li>
+                            <li><a class="smooth-scroll" href="#video"><span class="separet"></span> Update video</a></li>
                             <li><a class="smooth-scroll" href="/auth/logout"><span class="separet"></span> Logout</a></li>
                         </ul>
                     </nav>
@@ -207,6 +208,41 @@
         </div>
     </section>
     <!-- ======= comments part end ======= -->
+
+    <!-- ======= upload image part start ======= -->
+ <section id="images" class="contact-part-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title contact-title ">
+                    <h1>Update <span>youtube</span> video</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="contact-form">
+                    <form action="/youvideo" method="POST" encType="multipart/form-data" name="form">
+                        <div class="row">
+                            <h1>Insert your video code</h1>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-content">
+                                    <input name="yvideo" placeholder="Place your video-code here"  type="text" required>
+                                </div>
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="row">
+                                <button type="submit" name="submit" class="sent-button hvr-shutter-out-vertical wow fadeIn">UPDATE</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ======= upload image part End ======= -->
 
     <!-- ======= Footer part start ======= -->
     <footer class="fotter-bottom-area">

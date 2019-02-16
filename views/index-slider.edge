@@ -184,16 +184,19 @@
 						<h1>about <span>gym</span></h1>
 					</div>
 					<!-- youtube video start -->
+					@each(v in vids)
 					<div class="gym-video">
 						<div class="embed-responsive embed-responsive-16by9">
-							<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/-51is72Jbvc" allowfullscreen="" height="459"
+							<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{v.yvideo}}" allowfullscreen="" height="459"
 							 width="816"></iframe>
 						</div>
 					</div>
+					@endeach
 					<!-- youtube video end -->
 				</div>
 			</div>
 		</div>
+		{{vids.yvideo}}
 	</section>
 	<!-- ======= About gym part end ======= -->
 	<!-- ======= Fit yourself part start ======= -->
