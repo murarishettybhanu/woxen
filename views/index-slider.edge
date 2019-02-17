@@ -15,10 +15,97 @@
 	<link rel="icon" type="image/png" href="favicon.png">
 	<!-- ======= Google Fonts ======= -->
 	<!-- Open Sans Google Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
+		rel="stylesheet">
 	<!-- ======= css ======= -->
 	<link rel="stylesheet" href="style.css">
 </head>
+<style>
+	.rating {
+		float: left;
+	}
+
+	/* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
+   follow these rules. Every browser that supports :checked also supports :not(), so
+   it doesn’t make the test unnecessarily selective */
+	.rating:not(:checked)>input {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+		visibility: hidden;
+		clip: rect(0, 0, 0, 0);
+	}
+
+	.rating:not(:checked)>label {
+		float: right;
+		width: 1em;
+		padding: 0 .1em;
+		overflow: hidden;
+		white-space: nowrap;
+		cursor: pointer;
+		font-size: 200%;
+		line-height: 1.2;
+		color: #ddd;
+		text-shadow: 1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0, 0, 0, .5);
+	}
+
+	.rating:not(:checked)>label:before {
+		content: '★ ';
+	}
+
+	.rating>input:checked~label {
+		color: #f70;
+		text-shadow: 1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0, 0, 0, .5);
+	}
+
+	.rating:not(:checked)>label:hover,
+	.rating:not(:checked)>label:hover~label {
+		color: gold;
+		text-shadow: 1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0, 0, 0, .5);
+	}
+
+	.rating>input:checked+label:hover,
+	.rating>input:checked+label:hover~label,
+	.rating>input:checked~label:hover,
+	.rating>input:checked~label:hover~label,
+	.rating>label:hover~input:checked~label {
+		color: #ea0;
+		text-shadow: 1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0, 0, 0, .5);
+	}
+
+	.rating>label:active {
+		position: relative;
+		top: 2px;
+		left: 2px;
+	}
+
+	.ratings-static {
+		width: 60px;
+		height: 16px;
+		display: block;
+		background: url('http://www.itsalif.info/blogfiles/rating/star-rating.png') 0 0 no-repeat;
+	}
+
+	.ratings-5 {
+		background-position: 0 0;
+	}
+
+	.ratings-4 {
+		background-position: -12px 0;
+	}
+
+	.ratings-3 {
+		background-position: -24px 0;
+	}
+
+	.ratings-2 {
+		background-position: -36px 0;
+	}
+
+	.ratings-1 {
+		background-position: -48px 0;
+	}
+</style>
 
 <body data-spy="scroll" data-target=".navbar">
 	<!-- ======= preloader start ======= -->
@@ -43,13 +130,18 @@
 					<nav class="navbar menu-part">
 						<ul class="nav nav-tabs" id="menu">
 							<li class="active"><a class="smooth-scroll" href="#top">home</a></li>
-							<li><a class="smooth-scroll" href="#services"><span class="separet"></span> services</a></li>
+							<li><a class="smooth-scroll" href="#services"><span class="separet"></span> services</a>
+							</li>
 							<li><a class="smooth-scroll" href="#fitness"><span class="separet"></span> Fitness</a></li>
-							<li><a class="smooth-scroll" href="#portfolio"><span class="separet"></span> portfolio</a></li>
+							<li><a class="smooth-scroll" href="#portfolio"><span class="separet"></span> portfolio</a>
+							</li>
 							<li><a class="smooth-scroll" href="#about"><span class="separet"></span> about us</a></li>
-							<li><a class="smooth-scroll" href="#ourClients"><span class="separet"></span> Our Clients</a></li>
-							<li><a class="smooth-scroll" href="#comments"><span class="separet"></span> Comment us</a></li>
-							<li><a class="smooth-scroll" href="#contactus"><span class="separet"></span> Contact us</a></li>
+							<li><a class="smooth-scroll" href="#ourClients"><span class="separet"></span> Our
+									Clients</a></li>
+							<li><a class="smooth-scroll" href="#comments"><span class="separet"></span> Comment us</a>
+							</li>
+							<li><a class="smooth-scroll" href="#contactus"><span class="separet"></span> Contact us</a>
+							</li>
 						</ul>
 					</nav>
 				</div>
@@ -151,8 +243,10 @@
 							<img src="images/icons/03.png" alt="">
 						</div>
 						<h3>MUSCLE GAINING</h3>
-						<p>Most people who struggle to gain weight misunderstand the most basic principle - 'the body will only grow
-							if you provide it with surplus of high-quality calories each day.Woxen takes care of both strength and
+						<p>Most people who struggle to gain weight misunderstand the most basic principle - 'the body
+							will only grow
+							if you provide it with surplus of high-quality calories each day.Woxen takes care of both
+							strength and
 							hypertrophy
 							with compound workouts and specialzied volume trainings.</p>
 					</div>
@@ -187,8 +281,8 @@
 					@each(v in vids)
 					<div class="gym-video">
 						<div class="embed-responsive embed-responsive-16by9">
-							<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{v.yvideo}}" allowfullscreen="" height="459"
-							 width="816"></iframe>
+							<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{v.yvideo}}"
+								allowfullscreen="" height="459" width="816"></iframe>
 						</div>
 					</div>
 					@endeach
@@ -209,9 +303,12 @@
 							<div class="title wow fadeInDown">
 								<h1>fit <span>yourself</span></h1>
 							</div>
-							<p>If you're eating the right food and keeping fit, your body will be strong and help you to cope with stress
-								and also fight illness. Eating well and exercising often when you're a teenager will also help you stay in good
-								health later in life. Getting regular sleep is another really important way to stay healthy.</p>
+							<p>If you're eating the right food and keeping fit, your body will be strong and help you to
+								cope with stress
+								and also fight illness. Eating well and exercising often when you're a teenager will
+								also help you stay in good
+								health later in life. Getting regular sleep is another really important way to stay
+								healthy.</p>
 
 						</div>
 					</div>
@@ -235,16 +332,19 @@
 						<div class="fitness-cta wow fadeInUp">
 							<img src="images/icons/05.png" alt="">
 							<h3>CARDIO</h3>
-							<p>Cardio exercise is any exercise that raises your heart rate. Face it our bodies were made to move,and we all
+							<p>Cardio exercise is any exercise that raises your heart rate. Face it our bodies were made
+								to move,and we all
 								know that to keep our muscles in shape we need to move them.
-								This movement makes them stronger and stronger muscles make for a more efficient and healthy body.</p>
+								This movement makes them stronger and stronger muscles make for a more efficient and
+								healthy body.</p>
 						</div>
 					</a>
 					<a href="#">
 						<div class="fitness-cta wow fadeInUp">
 							<img src="images/icons/06.png" alt="">
 							<h3>BODY BUILDING</h3>
-							<p>Bodybuilding is the process of developing muscle fibres through the combination of weight training, increased
+							<p>Bodybuilding is the process of developing muscle fibres through the combination of weight
+								training, increased
 								caloric intake, and rest.</p>
 						</div>
 					</a>
@@ -252,7 +352,8 @@
 						<div class="fitness-cta wow fadeInUp">
 							<img src="images/icons/07.png" alt="">
 							<h3>WEIGHT LOSS</h3>
-							<p>To lose weight we need to burn more calories than are consumed. Weight loss can either occur unintentionally
+							<p>To lose weight we need to burn more calories than are consumed. Weight loss can either
+								occur unintentionally
 								due to malnourishment or an underlying disease or arise from a conscious effort to
 								improve an actual or perceived overweight or obese state. </p>
 						</div>
@@ -285,7 +386,8 @@
 								<img src="{{img.image}}" alt="">
 								<div class="project-lightbox">
 									<div class="project-lightbox-middile">
-										<a href="{{img.image}}" data-lightbox="roadtrip" data-title="GYM"><i class="fa fa-plus" aria-hidden="true"></i></a>
+										<a href="{{img.image}}" data-lightbox="roadtrip" data-title="GYM"><i
+												class="fa fa-plus" aria-hidden="true"></i></a>
 									</div>
 								</div>
 							</div>
@@ -313,19 +415,23 @@
 				<div class="col-md-6">
 					<div class="about-us-content">
 						<p>Woxen fitness is for the people who have neglected their bodies and want to lose weight and
-							want to get their body into shape and live a healthier life eliminating all the heart related
+							want to get their body into shape and live a healthier life eliminating all the heart
+							related
 							diseases. </p>
-						<p>Our training facility is a place where people come to get fit, lose weight, learn to exercise right,
-							learn to live better, eat healthier.This is the place where you can get the personalized diets
+						<p>Our training facility is a place where people come to get fit, lose weight, learn to exercise
+							right,
+							learn to live better, eat healthier.This is the place where you can get the personalized
+							diets
 							by our experienced trainers. </p>
-							<h3>Why <span>choose</span> us ?</h3><br>
+						<h3>Why <span>choose</span> us ?</h3><br>
 						<ul class="check-list">
 							<li>High Intensity Interval Training (HIIT).</li>
 							<li>Personalized diet plans.</li>
 							<li>Well equiped gym.</li>
 							<li>Personal training.</li>
 							<li>Well experienced trainers.</li>
-							<li>Strength training equipment<li>
+							<li>Strength training equipment
+							<li>
 							<li>Nutritional support.</li>
 						</ul>
 					</div>
@@ -347,8 +453,10 @@
 
 	<!-- ======= Google map part start ======= -->
 	<div class="google-map-area container">
-		<div style="width: 100%"><iframe width="100%" height="600" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=woxen%20fitness%20gym+(My%20Business%20Name)&amp;ie=UTF8&amp;t=&amp;z=17&amp;iwloc=B&amp;output=embed"
-			 frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/map-my-route/">Plot a
+		<div style="width: 100%"><iframe width="100%" height="600"
+				src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=woxen%20fitness%20gym+(My%20Business%20Name)&amp;ie=UTF8&amp;t=&amp;z=17&amp;iwloc=B&amp;output=embed"
+				frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a
+					href="https://www.maps.ie/map-my-route/">Plot a
 					route map</a></iframe></div><br />
 	</div>
 	<!-- ======= Google map part end ======= -->
@@ -373,7 +481,8 @@
 							</div>
 							<div class="client-content">
 								<p>{{ userComment.msg}}</p>
-								<h3>{{userComment.name}}</h3><em>posted on</em><a href="#"> {{userComment.createdAt.toDateString()}}</a>
+								<h3 class="ratings-static ratings-{{userComment.finalrating}} client-content"></h3>
+							 <h3>{{userComment.name}}&nbsp;</h3><em>posted on</em><a href="#"> {{userComment.createdAt.toDateString()}}</a>
 							</div>
 						</div>
 						@endif
@@ -412,13 +521,31 @@
 									<input name="image" placeholder="UPLOAD YOUR IMAGE" type="file">
 								</div>
 							</div>
+							<input type="text" id="ratingval" name="finalrating" style="display:none;">
 							<div class="row">
 								<div class="col-md-12">
 									<div class="form-message">
-										<textarea class="field-element " data-gramm="true" spellcheck="false" data-gramm_editor="true" name="msg"
-										 placeholder="YOUR MESSEGE GOES HERE..." required></textarea>
+										<textarea class="field-element " data-gramm="true" spellcheck="false"
+											data-gramm_editor="true" name="msg" placeholder="YOUR MESSEGE GOES HERE..."
+											required></textarea>
 									</div>
-									<button type="submit" name="submit" class="sent-button hvr-shutter-out-vertical wow fadeIn">SEND</button>
+									<h4>Rate Us</h4>
+									<div class="rating">
+										<input type="radio" id="star5" name="rating" value="5"
+											onclick="rate(5)" /><label for="star5" title="Rocks!">5 stars</label>
+										<input type="radio" id="star4" name="rating" value="4"
+											onclick="rate(4)" /><label for="star4" title="Pretty good">4 stars</label>
+										<input type="radio" id="star3" name="rating" value="3"
+											onclick="rate(3)" /><label for="star3" title="Meh">3 stars</label>
+										<input type="radio" id="star2" name="rating" value="2"
+											onclick="rate(2)" /><label for="star2" title="Kinda bad">2 stars</label>
+										<input type="radio" id="star1" name="rating" value="1"
+											onclick="rate(1)" /><label for="star1" title="Sucks big time">1 star</label>
+									</div>
+
+									<br><br><br>
+									<button type="submit" name="submit"
+										class="sent-button hvr-shutter-out-vertical wow fadeIn">SEND</button>
 								</div>
 							</div>
 						</form>
@@ -437,11 +564,14 @@
 						<div align="center">
 							<h2 style="color:#d63138;"><b>contact us</b></h2>
 							<address style="color: white;">
-								
-								<i class="fa fa-map-marker" style="color:#d63138;" aria-hidden="true"></i> 136, Beside Saibaba Temple, Saipuri
+
+								<i class="fa fa-map-marker" style="color:#d63138;" aria-hidden="true"></i> 136, Beside
+								Saibaba Temple, Saipuri
 								colony, Defence colony, Sainikpuri, Secundrabad, Telangana- 500094
-								<br><br><i class="fa fa-volume-control-phone" style="color:#d63138;" aria-hidden="true"></i><a href="callto:+91 72878 74777"> +91 72878 74777</a>
-								<br><br><i class="fa fa-envelope" style="color:#d63138;" aria-hidden="true"></i> <a href="#">woxen.group@gmail.com</a>
+								<br><br><i class="fa fa-volume-control-phone" style="color:#d63138;"
+									aria-hidden="true"></i><a href="callto:+91 72878 74777"> +91 72878 74777</a>
+								<br><br><i class="fa fa-envelope" style="color:#d63138;" aria-hidden="true"></i> <a
+									href="#">woxen.group@gmail.com</a>
 
 							</address>
 						</div><br><br>
@@ -467,7 +597,9 @@
 			<div class="row">
 				<div class="col-md-12 text-center">
 					<div class="reserve-area">
-						<span>&copy;</span> Copyright <span>|<a href="http://alpha-technologies.herokuapp.com/index.html" style="color: #d63138">The Alpha Technologies</a>|</span> All Rights Reserved 2018
+						<span>&copy;</span> Copyright <span>|<a
+								href="http://alpha-technologies.herokuapp.com/index.html" style="color: #d63138">The
+								Alpha Technologies</a>|</span> All Rights Reserved 2018
 					</div>
 					<!-- copyright part -->
 				</div>
@@ -506,6 +638,11 @@
 	<!-- ====== active js ======= -->
 	<script type="text/javascript" src="js/active.js"></script>
 	<!-- ====== google map active js ======= -->
+	<script>
+		function rate(a) {
+			document.getElementById("ratingval").value = a;
+		}
+	</script>
 	<script type="text/javascript">
 		$(function () {
 			var fenway = [-33.7707907, 150.9101118];

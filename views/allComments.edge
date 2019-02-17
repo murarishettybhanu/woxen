@@ -26,6 +26,34 @@
   <!-- ======= css ======= -->
   <link rel="stylesheet" href="style.css">
 </head>
+<style>
+  .ratings-static {
+		width: 60px;
+		height: 16px;
+		display: block;
+		background: url('http://www.itsalif.info/blogfiles/rating/star-rating.png') 0 0 no-repeat;
+	}
+
+	.ratings-5 {
+		background-position: 0 0;
+	}
+
+	.ratings-4 {
+		background-position: -12px 0;
+	}
+
+	.ratings-3 {
+		background-position: -24px 0;
+	}
+
+	.ratings-2 {
+		background-position: -36px 0;
+	}
+
+	.ratings-1 {
+		background-position: -48px 0;
+	}
+</style>
 
 <body data-spy="scroll" data-target=".navbar">
   <!-- ======= preloader start ======= -->
@@ -131,7 +159,8 @@
                                 </div>
                                 <div class="client-content">
                                     <p>{{ userComment.msg}}</p>
-                                    <h3>{{userComment.name}}</h3> 
+                                    <h3 class="ratings-static ratings-{{userComment.finalrating}} client-content"></h3>
+                                    <h3>{{userComment.name}}&nbsp;</h3> 
                                     <em>posted on</em><a href="#"> {{userComment.createdAt.toDateString()}}</a>
                                 </div>
                             </div>

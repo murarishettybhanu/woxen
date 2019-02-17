@@ -16,6 +16,11 @@ const userCommentsSchema = new mongoose.Schema({
         required : true
         
     },
+    finalrating: {
+
+        type: String,
+        
+    },
     image: {
 
         type: String,

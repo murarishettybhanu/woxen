@@ -22,13 +22,45 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <!-- ======= Google Fonts ======= -->
     <!-- Open Sans Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
+        rel="stylesheet">
     <!-- ======= css ======= -->
     <link rel="stylesheet" href="style.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"> </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <style>
+            .rating-static {
+                width: 60px;
+                height: 16px;
+                display: block;
+                background: url('http://www.itsalif.info/blogfiles/rating/star-rating.png') 0 0 no-repeat;
+            }
+    
+            .rating-5 {
+                background-position: 0 0;
+            }
+    
+            .rating-4 {
+                background-position: -12px 0;
+            }
+    
+            .rating-3 {
+                background-position: -24px 0;
+            }
+    
+            .rating-2 {
+                background-position: -36px 0;
+            }
+    
+            .rating-1 {
+                background-position: -48px 0;
+            }
+    
+            
+        </style>
+
 </head>
 
 <body data-spy="scroll" data-target=".navbar">
@@ -54,12 +86,18 @@
                     <nav class="navbar menu-part">
                         <ul class="nav nav-tabs" id="menu">
                             <li class="active"><a class="smooth-scroll" href="/dashbord">home</a></li>
-                            <li><a class="smooth-scroll" href="/profile"><span class="separet"></span> {{users.username}}</a></li>
-                            <li><a class="smooth-scroll" href="#comments"><span class="separet"></span>Verify comments</a></li>
-                            <li><a class="smooth-scroll" href="#imgs"><span class="separet"></span>Manage images</a></li>
-                            <li><a class="smooth-scroll" href="/imageU"><span class="separet"></span> Upload images</a></li>
-                            <li><a class="smooth-scroll" href="#video"><span class="separet"></span> Update video</a></li>
-                            <li><a class="smooth-scroll" href="/auth/logout"><span class="separet"></span> Logout</a></li>
+                            <li><a class="smooth-scroll" href="/profile"><span class="separet"></span>
+                                    {{users.username}}</a></li>
+                            <li><a class="smooth-scroll" href="#comments"><span class="separet"></span>Verify
+                                    comments</a></li>
+                            <li><a class="smooth-scroll" href="#imgs"><span class="separet"></span>Manage images</a>
+                            </li>
+                            <li><a class="smooth-scroll" href="/imageU"><span class="separet"></span> Upload images</a>
+                            </li>
+                            <li><a class="smooth-scroll" href="#videos"><span class="separet"></span> Update video</a>
+                            </li>
+                            <li><a class="smooth-scroll" href="/auth/logout"><span class="separet"></span> Logout</a>
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -148,17 +186,26 @@
                                     </thead>
                                     @each(userComment in custcmnts)
                                     <tr>
-                                        <td>{{userComment.msg}} <br><br><em>-Commented by</em> {{userComment.name}} <br><em>On</em> {{userComment.createdAt.toDateString()}}</td>
-                                        <td name="img"><img src="{{userComment.image}}" alt="img" width='100' height='100'></td>
-                                        <td><a href="/acceptComment/{{userComment._id}}" style="width:60px;padding:2px 1px 2px 1px;"
+                                        <td>
+                                            {{userComment.msg}} <br>
+                                            <span class="rating-static rating-{{userComment.finalrating}}"></span>
+                                            <br><br><em>-Commented by</em> {{userComment.name}} <br><em>On</em>
+                                            {{userComment.createdAt.toDateString()}}
+                                        </td>
+                                        <td name="img"><img src="{{userComment.image}}" alt="img" width='100'
+                                                height='100'></td>
+                                        <td><a href="/acceptComment/{{userComment._id}}"
+                                                style="width:60px;padding:2px 1px 2px 1px;"
                                                 onclick="posted()">Accept</a>
-                                            &nbsp; <a href="/deleteComment/{{userComment._id}}" style="width:60px;padding:2px 1px 2px 1px;">Delete</a>
+                                            &nbsp; <a href="/deleteComment/{{userComment._id}}"
+                                                style="width:60px;padding:2px 1px 2px 1px;">Delete</a>
                                             &nbsp; <p>{{userComment.status || 'New'}}</p>
                                         </td>
 
                                     </tr>
                                     @endeach
                                 </table>
+
                             </div>
                         </div>
                         <!--  single schedule  -->
@@ -194,7 +241,8 @@
                                     </thead>
                                     @each(userImg in userImages)
                                     <tr>
-                                        <td name="img"><img src="{{userImg.image}}" alt="img" width='100' height='100'></td>
+                                        <td name="img"><img src="{{userImg.image}}" alt="img" width='100' height='100'>
+                                        </td>
                                         <td><a class="btn" href="/deleteImage/{{userImg._id}}">Delete</a></td>
                                     </tr>
                                     @endeach
@@ -210,39 +258,41 @@
     <!-- ======= comments part end ======= -->
 
     <!-- ======= upload image part start ======= -->
- <section id="images" class="contact-part-area section-padding">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="title contact-title ">
-                    <h1>Update <span>youtube</span> video</h1>
+    <section id="videos" class="contact-part-area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title contact-title ">
+                        <h1>Update <span>youtube</span> video</h1>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="contact-form">
-                    <form action="/youvideo" method="POST" encType="multipart/form-data" name="form">
-                        <div class="row">
-                            <h1>Insert your video code</h1>
-                            <div class="col-sm-6 col-md-6">
-                                <div class="form-content">
-                                    <input name="yvideo" placeholder="Place your video-code here"  type="text" required>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="contact-form">
+                        <form action="/youvideo" method="POST" encType="multipart/form-data" name="form">
+                            <div class="row">
+                                <h1>Insert your video code</h1>
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-content">
+                                        <input name="yvideo" placeholder="Place your video-code here" type="text"
+                                            required>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <br><br>
-                        <div class="row">
-                                <button type="submit" name="submit" class="sent-button hvr-shutter-out-vertical wow fadeIn">UPDATE</button>
+                            <br><br>
+                            <div class="row">
+                                <button type="submit" name="submit"
+                                    class="sent-button hvr-shutter-out-vertical wow fadeIn">UPDATE</button>
                             </div>
-                        </div>
+                    </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- ======= upload image part End ======= -->
+        </div>
+    </section>
+    <!-- ======= upload image part End ======= -->
 
     <!-- ======= Footer part start ======= -->
     <footer class="fotter-bottom-area">
@@ -312,6 +362,9 @@
     <script type="text/javascript" src="js/active.js"></script>
     <!-- ====== google map active js ======= -->
     <script type="text/javascript">
+
+    </script>
+    <script type="text/javascript">
         $(function () {
             var fenway = [-33.7707907, 150.9101118];
             $('#test')
@@ -330,6 +383,12 @@
                         }
                     }
                 );
+        });
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#aaa').load()
         });
 
     </script>
